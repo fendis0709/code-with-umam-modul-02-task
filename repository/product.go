@@ -36,3 +36,9 @@ func (r *ProductRepository) GetAllProduct(ctx context.Context) ([]model.Product,
 
 	return products, nil
 }
+
+func (r *ProductRepository) CreateProduct(ctx context.Context, p model.Product) error {
+	query := "INSERT INTO products (uuid, name, description, price) VALUES ($1, $2, $3, $4)"
+	_, err := r.db.ExecContext(ctx, query, p.UUID, p.Name, p.Description, p.Price)
+	return err
+}
