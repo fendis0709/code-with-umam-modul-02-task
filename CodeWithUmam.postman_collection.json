@@ -1,14 +1,345 @@
 {
   "info": {
     "_postman_id": "66454d6f-122b-4b26-8829-ddbbce1813c4",
-    "name": "CodeWithUmam - Fendi Modul 01 Task",
+    "name": "CodeWithUmam",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "2648013"
   },
   "item": [
     {
-      "name": "01 - Category Management [TASK]",
+      "name": "02 - CRUD Management [TASK]",
       "item": [
+        {
+          "name": "Products",
+          "item": [
+            {
+              "name": "Get Products",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseURL}}/products",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "products"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Create Product",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"{{$randomProductName}}\",\r\n  \"price\": 2500,\r\n  \"stock\": 100,\r\n  \"category_id\": \"b05d2319-dd1b-4151-803d-8e7de6efd9d0\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseURL}}/products",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "products"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Detail Product",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseURL}}/products/:id",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "products",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "01cdbf25-ef15-4892-970e-dba1d47557aa"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Product",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"{{$randomProductName}}\",\r\n  \"price\": 2500,\r\n  \"stock\": 100\r\n}"
+                },
+                "url": {
+                  "raw": "{{baseURL}}/products/:id",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "products",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "ab77fb40-bb33-4403-abea-a48bb54927e4"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete Product",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{baseURL}}/products/:id",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "products",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "2de07ab0-05db-4ffe-adc6-82f3c636a512"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Categories",
+          "item": [
+            {
+              "name": "Get Categories",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseURL}}/categories",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "categories"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Detail Category",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseURL}}/categories/:id",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "categories",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "b05d2319-dd1b-4151-803d-8e7de6efd9d0"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Create Category",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"{{$randomProductName}}\",\r\n  \"description\": \"{{$randomLoremSentence}}\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseURL}}/categories",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "categories"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Category",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"{{$randomProductName}}\",\r\n  \"description\": \"{{$randomLoremSentence}}\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseURL}}/categories/:id",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "categories",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "86c79b3f-babe-4662-8dab-38c0239755db"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete Category",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseURL}}/categories/:id",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "categories",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "86c79b3f-babe-4662-8dab-38c0239755db"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
         {
           "name": "Home",
           "request": {
@@ -66,469 +397,6 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n  \"code\": 200,\n  \"status\": \"OK\"\n}"
-            }
-          ]
-        },
-        {
-          "name": "Get Categories",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{baseURL}}/categories",
-              "host": [
-                "{{baseURL}}"
-              ],
-              "path": [
-                "categories"
-              ]
-            }
-          },
-          "response": [
-            {
-              "name": "[200] OK",
-              "originalRequest": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json",
-                    "type": "text"
-                  }
-                ],
-                "url": {
-                  "raw": "{{baseURL}}/categories",
-                  "host": [
-                    "{{baseURL}}"
-                  ],
-                  "path": [
-                    "categories"
-                  ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "Content-Length",
-                  "value": "119"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json",
-                  "description": "",
-                  "type": "text"
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 23 Jan 2026 07:53:47 GMT"
-                },
-                {
-                  "key": "Server",
-                  "value": "railway-edge"
-                },
-                {
-                  "key": "X-Railway-Edge",
-                  "value": "railway/us-west2"
-                },
-                {
-                  "key": "X-Railway-Request-Id",
-                  "value": "tiR7Uv2vSXCHXr3K9I3ezw"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n  \"code\": 200,\n  \"message\": \"OK\",\n  \"data\": {\n    \"categories\": [\n      {\n        \"id\": \"c231e125\",\n        \"name\": \"Food\",\n        \"description\": \"Food and beverages\"\n      }\n    ]\n  }\n}"
-            }
-          ]
-        },
-        {
-          "name": "Create Category",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "type": "text"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"name\": \"{{$randomProductName}}\",\r\n  \"description\": \"{{$randomLoremSentence}}\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{baseURL}}/categories",
-              "host": [
-                "{{baseURL}}"
-              ],
-              "path": [
-                "categories"
-              ]
-            }
-          },
-          "response": [
-            {
-              "name": "[201] Created",
-              "originalRequest": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json",
-                    "type": "text"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json",
-                    "type": "text"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"name\": \"{{$randomProductName}}\",\r\n  \"description\": \"{{$randomLoremSentence}}\"\r\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseURL}}/categories",
-                  "host": [
-                    "{{baseURL}}"
-                  ],
-                  "path": [
-                    "categories"
-                  ]
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "Content-Length",
-                  "value": "181"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json",
-                  "description": "",
-                  "type": "text"
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 23 Jan 2026 07:54:43 GMT"
-                },
-                {
-                  "key": "Server",
-                  "value": "railway-edge"
-                },
-                {
-                  "key": "X-Railway-Edge",
-                  "value": "railway/us-west2"
-                },
-                {
-                  "key": "X-Railway-Request-Id",
-                  "value": "znT3YcP6RpaxMfH49I3ezw"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n  \"code\": 201,\n  \"status\": \"Created\",\n  \"data\": {\n    \"category\": {\n      \"id\": \"7f71a16a\",\n      \"name\": \"Intelligent Concrete Cheese\",\n      \"description\": \"Non ipsa architecto dignissimos quae recusandae amet sed.\"\n    }\n  }\n}"
-            }
-          ]
-        },
-        {
-          "name": "Detail Category",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{baseURL}}/categories/:id",
-              "host": [
-                "{{baseURL}}"
-              ],
-              "path": [
-                "categories",
-                ":id"
-              ],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": "c231e125"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "name": "[200] OK",
-              "originalRequest": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json",
-                    "type": "text"
-                  }
-                ],
-                "url": {
-                  "raw": "{{baseURL}}/categories/:id",
-                  "host": [
-                    "{{baseURL}}"
-                  ],
-                  "path": [
-                    "categories",
-                    ":id"
-                  ],
-                  "variable": [
-                    {
-                      "key": "id",
-                      "value": "c231e125"
-                    }
-                  ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "Content-Length",
-                  "value": "114"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json",
-                  "description": "",
-                  "type": "text"
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 23 Jan 2026 07:55:33 GMT"
-                },
-                {
-                  "key": "Server",
-                  "value": "railway-edge"
-                },
-                {
-                  "key": "X-Railway-Edge",
-                  "value": "railway/us-west2"
-                },
-                {
-                  "key": "X-Railway-Request-Id",
-                  "value": "8aVWOpWiTeCFr8vE9I3ezw"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n  \"code\": 200,\n  \"status\": \"OK\",\n  \"data\": {\n    \"category\": {\n      \"id\": \"c231e125\",\n      \"name\": \"Food\",\n      \"description\": \"Food and beverages\"\n    }\n  }\n}"
-            }
-          ]
-        },
-        {
-          "name": "Update Category",
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "type": "text"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"name\": \"{{$randomProductName}}\",\r\n  \"description\": \"{{$randomLoremSentence}}\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{baseURL}}/categories/:id",
-              "host": [
-                "{{baseURL}}"
-              ],
-              "path": [
-                "categories",
-                ":id"
-              ],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": "c231e125"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "name": "[200] OK",
-              "originalRequest": {
-                "method": "PUT",
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json",
-                    "type": "text"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json",
-                    "type": "text"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"name\": \"{{$randomProductName}}\",\r\n  \"description\": \"{{$randomLoremSentence}}\"\r\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseURL}}/categories/:id",
-                  "host": [
-                    "{{baseURL}}"
-                  ],
-                  "path": [
-                    "categories",
-                    ":id"
-                  ],
-                  "variable": [
-                    {
-                      "key": "id",
-                      "value": "c231e125"
-                    }
-                  ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json",
-                  "description": "",
-                  "type": "text"
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 23 Jan 2026 08:01:06 GMT"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "27"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n  \"code\": 200,\n  \"status\": \"OK\"\n}"
-            }
-          ]
-        },
-        {
-          "name": "Delete Category",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "{{baseURL}}/categories/:id",
-              "host": [
-                "{{baseURL}}"
-              ],
-              "path": [
-                "categories",
-                ":id"
-              ],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": "77597757"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "name": "[200] OK",
-              "originalRequest": {
-                "method": "DELETE",
-                "header": [],
-                "url": {
-                  "raw": "{{baseURL}}/categories/:id",
-                  "host": [
-                    "{{baseURL}}"
-                  ],
-                  "path": [
-                    "categories",
-                    ":id"
-                  ],
-                  "variable": [
-                    {
-                      "key": "id",
-                      "value": "c231e125"
-                    }
-                  ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json",
-                  "description": "",
-                  "type": "text"
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 23 Jan 2026 07:03:17 GMT"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "27"
-                }
-              ],
-              "cookie": [
-                {
-                  "expires": "Invalid Date",
-                  "domain": "",
-                  "path": ""
-                }
-              ],
               "body": "{\n  \"code\": 200,\n  \"status\": \"OK\"\n}"
             }
           ]
