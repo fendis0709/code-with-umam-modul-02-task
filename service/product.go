@@ -21,13 +21,34 @@ func NewProductService(repo *repository.ProductRepository) *ProductService {
 func (s *ProductService) GetAllProduct(ctx context.Context) ([]transport.ProductItemResponse, error) {
 	products, err := s.repo.GetAllProduct(ctx)
 	if err != nil {
-		fmt.Print("service.product.GetAllProduct() Error: ", err.Error())
+		fmt.Print("s.repo.GetAllProduct() Error: ", err.Error())
 		return nil, err
+	}
+	if len(products) == 0 {
+		return []transport.ProductItemResponse{}, nil
 	}
 
 	productsResponse := transformProduct(products)
 
 	return productsResponse, nil
+}
+
+func (s *ProductService) GetProductByUUID(ctx context.Context, uuid string) (transport.ProductItemResponse, error) {
+	product, err := s.repo.GetProductByUUID(ctx, uuid)
+	if err != nil {
+		fmt.Print("s.repo.GetProductByUUID() Error: ", err.Error())
+		return transport.ProductItemResponse{}, err
+	}
+
+	productResponse := transport.ProductItemResponse{
+		ID:       product.UUID,
+		Name:     product.Name,
+		Stock:    product.Stock,
+		Price:    product.Price,
+		Category: nil, // Assuming category data is not available in model.Product
+	}
+
+	return productResponse, nil
 }
 
 func transformProduct(p []model.Product) []transport.ProductItemResponse {
@@ -47,7 +68,7 @@ func transformProduct(p []model.Product) []transport.ProductItemResponse {
 }
 
 func (s *ProductService) CreateProduct(ctx context.Context, req transport.ProductRequest) (transport.ProductItemResponse, error) {
-	randomUUID := generateRandomUUID()
+	randomUUID := uuid.New().String()
 
 	newProduct := model.Product{
 		UUID:  randomUUID,
@@ -58,7 +79,7 @@ func (s *ProductService) CreateProduct(ctx context.Context, req transport.Produc
 
 	err := s.repo.CreateProduct(ctx, newProduct)
 	if err != nil {
-		fmt.Print("service.product.CreateProduct() Error: ", err.Error())
+		fmt.Print("s.repo.CreateProduct() Error: ", err.Error())
 		return transport.ProductItemResponse{}, err
 	}
 
@@ -73,6 +94,37 @@ func (s *ProductService) CreateProduct(ctx context.Context, req transport.Produc
 	return productResponse, nil
 }
 
-func generateRandomUUID() string {
-	return uuid.New().String()
+func (s *ProductService) UpdateProduct(ctx context.Context, id string, req transport.ProductRequest) (transport.ProductItemResponse, error) {
+	newProduct := model.Product{
+		UUID:  id,
+		Name:  req.Name,
+		Stock: req.Stock,
+		Price: req.Price,
+	}
+
+	err := s.repo.UpdateProduct(ctx, newProduct)
+	if err != nil {
+		fmt.Print("s.repo.UpdateProduct() Error: ", err.Error())
+		return transport.ProductItemResponse{}, err
+	}
+
+	productResponse := transport.ProductItemResponse{
+		ID:       newProduct.UUID,
+		Name:     newProduct.Name,
+		Stock:    newProduct.Stock,
+		Price:    newProduct.Price,
+		Category: nil, // Assuming category data is not available in model.Product
+	}
+
+	return productResponse, nil
+}
+
+func (s *ProductService) DeleteProduct(ctx context.Context, id string) error {
+	err := s.repo.DeleteProduct(ctx, id)
+	if err != nil {
+		fmt.Print("s.repo.DeleteProduct() Error: ", err.Error())
+		return err
+	}
+
+	return nil
 }

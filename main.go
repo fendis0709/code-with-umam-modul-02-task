@@ -101,6 +101,8 @@ func main() {
 
 	http.HandleFunc("/products", productHandler.HandleProduct)
 
+	http.HandleFunc("/products/", productHandler.HandleProductItem)
+
 	http.HandleFunc("/categories", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == "GET" {
 			getCategories(w, r)

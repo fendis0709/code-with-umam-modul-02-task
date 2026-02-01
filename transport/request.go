@@ -8,6 +8,7 @@ type CategoryRequest struct {
 
 // ProductRequest represents the payload for creating or updating a product.
 type ProductRequest struct {
+	UUID       *string  `json:"uuid"`
 	Name       string   `json:"name"`
 	Stock      *int64   `json:"stock"`
 	Price      *float64 `json:"price"`
