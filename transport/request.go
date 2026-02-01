@@ -6,10 +6,10 @@ type CategoryRequest struct {
 	Description string `json:"description"`
 }
 
-// PackageRequest represents the payload for creating or updating a package.
-type PackageRequest struct {
-	Name        string   `json:"name"`
-	CategoryID  string   `json:"category_id"`
-	Description *string  `json:"description"`
-	Price       *float64 `json:"price"`
+// ProductRequest represents the payload for creating or updating a product.
+type ProductRequest struct {
+	Name       string   `json:"name"`
+	Stock      *int64   `json:"stock"`
+	Price      *float64 `json:"price"`
+	CategoryID string   `json:"category_id"`
 }

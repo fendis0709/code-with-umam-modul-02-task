@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fendi/modul-02-task/service"
 	"fendi/modul-02-task/transport"
+	"fmt"
 	"net/http"
 )
 
@@ -31,17 +32,18 @@ func (h *ProductHandler) HandleProduct(w http.ResponseWriter, r *http.Request) {
 func (h *ProductHandler) GetAllProduct(w http.ResponseWriter, r *http.Request) {
 	res, err := h.service.GetAllProduct(r.Context())
 	if err != nil {
+		fmt.Print("handler.product.GetAllProduct() Error: ", err.Error())
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(res.Code)
+	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(res)
 }
 
 func (h *ProductHandler) CreateProduct(w http.ResponseWriter, r *http.Request) {
-	var productReq transport.PackageRequest
+	var productReq transport.ProductRequest
 	err := json.NewDecoder(r.Body).Decode(&productReq)
 	if err != nil {
 		http.Error(w, "Invalid Request Body", http.StatusBadRequest)
@@ -55,6 +57,6 @@ func (h *ProductHandler) CreateProduct(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(res.Code)
+	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(res)
 }
