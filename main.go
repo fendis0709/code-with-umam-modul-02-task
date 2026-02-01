@@ -44,13 +44,13 @@ func main() {
 	}
 	defer db.Close()
 
-	productRepo := repository.NewProductRepository(db)
-	productService := service.NewProductService(productRepo)
-	productHandler := handler.NewProductHandler(productService)
-
 	categoryRepo := repository.NewCategoryRepository(db)
 	categoryService := service.NewCategoryService(categoryRepo)
 	categoryHandler := handler.NewCategoryHandler(categoryService)
+
+	productRepo := repository.NewProductRepository(db)
+	productService := service.NewProductService(productRepo, categoryRepo)
+	productHandler := handler.NewProductHandler(productService)
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == "GET" {
