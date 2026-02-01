@@ -3,7 +3,12 @@ package main
 import (
 	"encoding/json"
 	"fendi/modul-02-task/config"
+	"fendi/modul-02-task/database"
+	"fendi/modul-02-task/handler"
+	"fendi/modul-02-task/repository"
+	"fendi/modul-02-task/service"
 	"fmt"
+	"log"
 	"math/rand"
 	"net/http"
 	"os"
@@ -68,6 +73,16 @@ func main() {
 		DBConn:  viper.GetString("DB_CONN"),
 	}
 
+	db, err := database.InitDB(conf.DBConn)
+	if err != nil {
+		log.Fatalf("Error: Unable to connect to database, %v", err.Error())
+	}
+	defer db.Close()
+
+	productRepo := repository.NewProductRepository(db)
+	productService := service.NewProductService(productRepo)
+	productHandler := handler.NewProductHandler(productService)
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == "GET" {
 			if r.URL.Path == "/" {
@@ -83,6 +98,8 @@ func main() {
 
 		http.Error(w, "Not Found", http.StatusNotFound)
 	})
+
+	http.HandleFunc("/products", productHandler.HandleProduct)
 
 	http.HandleFunc("/categories", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == "GET" {
