@@ -69,7 +69,7 @@ func (r *ProductRepository) CreateProduct(ctx context.Context, p model.Product) 
 }
 
 func (r *ProductRepository) UpdateProduct(ctx context.Context, p model.Product) error {
-	query := "UPDATE products SET name = $1, stock = $2, price = $3 WHERE uuid = $4"
+	query := "UPDATE products SET name = $1, stock = $2, price = $3, updated_at = NOW() WHERE uuid = $4"
 	_, err := r.db.ExecContext(ctx, query, p.Name, p.Stock, p.Price, p.UUID)
 	if err != nil {
 		fmt.Println("repository.product.UpdateProduct() Exec Error: ", err.Error())
