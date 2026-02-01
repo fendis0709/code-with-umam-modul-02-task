@@ -2,8 +2,9 @@ package transport
 
 // CategoryRequest represents the payload for creating or updating a category.
 type CategoryRequest struct {
-	Name        string `json:"name"`
-	Description string `json:"description"`
+	UUID        *string `json:"uuid"`
+	Name        string  `json:"name"`
+	Description string  `json:"description"`
 }
 
 // ProductRequest represents the payload for creating or updating a product.
